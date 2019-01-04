@@ -87,14 +87,19 @@ function roundComplete() {
     // if user won
     if (lettersInWord.toString() == blanksAndSuccesses.toString()) {
         winCounter++;
-        alert("You Win!");
         document.getElementById("winCounter").innerHTML = winCounter;
+        alert("You Win!");
+        wrongLetters = [];
+        document.getElementById("wrongGuesses").innerHTML = wrongLetters.join(" ");
         startGame();
     }
 
 
     // if user lost
     if (guessesLeft === 0) {
+        alert("You Lose!");
+        wrongLetters = [];
+        document.getElementById("wrongGuesses").innerHTML = wrongLetters.join(" ");
         lossCounter++;
         document.getElementById("lossCounter").innerHTML = lossCounter;
         startGame();
@@ -116,7 +121,7 @@ document.onkeyup = function(event) {
     checkLetters(letterGuessed);
     console.log(letterGuessed);
 
-    setTimeout(roundComplete, 1000)
+    setTimeout(roundComplete, 1)
     // roundComplete();
 
 }
