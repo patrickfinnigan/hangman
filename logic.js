@@ -56,6 +56,7 @@ function checkLetters(letter) {
         if (selectedWord[i] == letter) {
             isLetterInWord = true;
             console.log("match!");
+
         }
         
     }
@@ -66,6 +67,7 @@ function checkLetters(letter) {
         for (let i = 0; i < numBlanks; i++) {
             if(selectedWord[i] == letter) {
                 blanksAndSuccesses[i] = letter;
+                document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
             }
         }
     } else {
@@ -87,14 +89,15 @@ function roundComplete() {
         winCounter++;
         alert("You Win!");
         document.getElementById("winCounter").innerHTML = winCounter;
+        startGame();
     }
 
 
     // if user lost
     if (guessesLeft === 0) {
-        startGame();
         lossCounter++;
         document.getElementById("lossCounter").innerHTML = lossCounter;
+        startGame();
     }
 }
 
@@ -112,6 +115,8 @@ document.onkeyup = function(event) {
     let letterGuessed = String.fromCharCode(event.keyCode).toLocaleLowerCase();
     checkLetters(letterGuessed);
     console.log(letterGuessed);
-    roundComplete();
+
+    setTimeout(roundComplete, 1000)
+    // roundComplete();
 
 }
